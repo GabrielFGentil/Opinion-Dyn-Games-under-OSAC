@@ -173,11 +173,17 @@ function COD_OSA_GS_2a(x_init,targets,γ,K_f,A,B,proj_flag,perm_flag)
             x_temp = x_os[:,k] #Temp. state set to current state
             if perm_flag == 1
                 p_reord = RandomPermutation(N_p)
-            else
+            elseif perm_flag == 0
                 p_reord = 1:1:N_p
+            elseif perm_flag == 3
+                p_reord = [1 2; 2 1; 2 1; 1 2; 2 1; 1 2; 2 1; 2 1; 2 1; 1 2; 2 1; 1 2; 2 1; 2 1; 1 2; 2 1; 1 2; 2 1; 2 1; 2 1 ]
             end
             for p in 1:N_p #player loop
-                x_temp, u_os[p,k] = COD_OSA_1p_update(x_temp,targets[:,p_reord[p]],γ[p_reord[p]],A,B[:,p_reord[p]])  #This is executed N_p times
+                if perm_flag == 3
+                    x_temp, u_os[p,k] = COD_OSA_1p_update(x_temp,targets[:,p_reord[k,p]],γ[p_reord[k,p]],A,B[:,p_reord[k,p]])  #This is executed N_p times
+                else
+                    x_temp, u_os[p,k] = COD_OSA_1p_update(x_temp,targets[:,p_reord[p]],γ[p_reord[p]],A,B[:,p_reord[p]])  #This is executed N_p times
+                end
                 if proj_flag == 1
                     x_temp = hyp_proj(x_temp) #If the projection flag is set to one, each new x_temp is cut to size by projection
                 end
