@@ -35,3 +35,31 @@ function scatter_plot(x_plot,save)
         savefig("GS_2a_scatter.png")
     end
 end
+
+###########################################################################
+function extra_plot(x_os,targets,K_f)
+    figure(figsize=(6,6))
+    grid()
+    plot(x_os', "*-")
+    plot(targets[1,1].*ones(K_f+1,1),"--",color = "blue");
+    plot(targets[2,2].*ones(K_f+1,1),"--",color = "red");
+    legend([L"x_1",L"x_2",L"x_3", L"g_1", L"g_2"], loc = "right")
+    xlabel(L"Time")
+    ylabel("Opinions \$x_i\$, \$i=1,2,3\$")
+    title("Time plot of opinions")
+end
+########################################################################
+function extra_3Dplot(x_plot)
+    ax = gca(projection="3d")
+    for i in 1:2
+        k = string("$i")
+        if iseven(i) == true 
+            PyPlot.plot3D(x_plot[1,i:i+1]',x_plot[2,i:i+1]', x_plot[3,i:i+1]', "-k", color = "red")
+        else
+            PyPlot.plot3D(x_plot[1,i:i+1]',x_plot[2,i:i+1]', x_plot[3,i:i+1]', "-k", color = "blue")
+        end
+    end
+    xlabel(L"x_1"); ylabel(L"x_2"); zlabel(L"x_3")
+    grid()
+    legend([L"P_1", L"P_2"])
+end
