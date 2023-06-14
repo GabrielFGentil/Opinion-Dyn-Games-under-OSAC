@@ -49,17 +49,18 @@ function extra_plot(x_os,targets,K_f)
     title("Time plot of opinions")
 end
 ########################################################################
-function extra_3Dplot(x_plot)
+function extra_3Dplot(x_plot, h, v, T)
     ax = gca(projection="3d")
-    for i in 1:2
+    for i in 1:T
         k = string("$i")
         if iseven(i) == true 
-            PyPlot.plot3D(x_plot[1,i:i+1]',x_plot[2,i:i+1]', x_plot[3,i:i+1]', "-k", color = "red")
+            PyPlot.plot3D(x_plot[1,i:i+1]',x_plot[2,i:i+1]', x_plot[3,i:i+1]', "-*", color = "red")
         else
-            PyPlot.plot3D(x_plot[1,i:i+1]',x_plot[2,i:i+1]', x_plot[3,i:i+1]', "-k", color = "blue")
+            PyPlot.plot3D(x_plot[1,i:i+1]',x_plot[2,i:i+1]', x_plot[3,i:i+1]', "-*", color = "blue")
         end
     end
     xlabel(L"x_1"); ylabel(L"x_2"); zlabel(L"x_3")
     grid()
     legend([L"P_1", L"P_2"])
+    ax[:view_init](h, v)
 end
