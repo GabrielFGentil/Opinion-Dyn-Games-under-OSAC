@@ -1,3 +1,4 @@
+####################################
 function rowsum(A) #Returns a column vector containing the row sums of square matrix A
     m = size(A,1)
     rowsum = zeros(m,1)
