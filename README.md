@@ -7,3 +7,5 @@ All codes were written in the Julia programming language version 1.8.1, bundled 
  - ..._plots, which are the specific settings for each plot, to retrieve precisely the article's figures.
 
 If any questions, suggestions, or errors are found in the codes, email the correspondent in the article's body, and we will respond as quickly as possible.
+
+# Note: Section_VI/Subsection_C is under construction.
