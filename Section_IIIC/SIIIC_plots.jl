@@ -64,3 +64,38 @@ function extra_3Dplot(x_plot, h, v, T)
     legend([L"P_1", L"P_2"])
     ax[:view_init](h, v)
 end
+###########################################################################
+function plot_insider(x_os)
+    myfig = gcf()
+    clf()
+
+    plot(0.8.*ones(6,1),0:0.1:0.5, "--", color = "blue")
+    plot(0:0.1:0.8,0.1.*ones(9,1), "--", color = "red")
+
+    for i in 1:20
+        plot(x_os[1,i:i+1]',x_os[2,i:i+1]', "-*")
+    end
+    xlabel(L"x_1", size = "14")
+    ylabel(L"x_2", size = "14")
+
+    grid()
+    legend([L"g_1",L"g_2"])
+    text(0.46, 0.48, L"x_0", size = "12")
+    text(0.6, 0.11, L"x_1", size = "12")
+    text(0.805, 0.23, L"x_2", size = "12")
+    text(0.75, 0.31, L"x_3", size = "12")
+    text(0.68, 0.078, L"x_4", size = "12")
+    title("Phase plane plot: 2 players, 2 agents")
+
+
+    ax2 = myfig.add_axes([0.3,0.4,0.3,0.3])
+    grid()
+    for i in 1:4
+        plot(x_os[1,i:i+1]',x_os[2,i:i+1]', "-*")
+    end
+    text(0.52, 0.48, L"x_0", size = "12")
+    text(0.6, 0.11, L"x_1", size = "12")
+    text(0.77, 0.17, L"x_2", size = "12")
+    text(0.75, 0.31, L"x_3", size = "12")
+    text(0.69, 0.09, L"x_4", size = "12")
+end
