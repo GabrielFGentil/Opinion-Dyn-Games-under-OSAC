@@ -1,38 +1,53 @@
-function plot_opinions(x_os,T)
+###############################################################################################
+function plot_targ(x_plot, T, perm_flag, model, save)
     figure(figsize=(6,6))
     PyPlot.grid()
-    for i in 1:size(x_os,1)
-        plot(x_os[i,1:T],".-")
-    end
+    plot(x_plot',".-")
     xlabel("Time")
     ylabel("Opinions \$x_i\$")
-    title("Karate Club with Jacobi Procedure")
-end
-
-function plot_opinions2(x_os,T)
-    figure(figsize=(6,6))
-    PyPlot.grid()
-    for i in 1:size(x_os,1)
-        plot(x_os[i,1:T],".-")
-    end
-    xlabel("Time")
-    ylabel("Opinions \$x_i\$")
-    if perm_flag == 0
-        title("Karate Club with GS Procedure")
-    elseif perm_flag == 1
-        title("Karate Club with RGS Procedure")
-    end
-end
-
-function plot_control(u_os,T)
-    figure(figsize=(6,6))
-    grid()
-    for i in 1:size(u_os,1)
-        plot(u_os[i,1:T],".-")
-    end
+    #legend([L"x_1",L"x_2", L"x_3", L"x_4", L"x_5", L"x_6", L"x_7", L"x_8", L"x_9", L"x_{10}"],loc="right")
     
-    xlabel("Time")
-    ylabel("Controls \$u_i\$")
-    legend([L"u_1",L"u_2", L"u_3", L"u_4"],loc="best")
-    title("Plots for control")
+    if model == 1
+        if perm_flag == 0
+            title("Time plots of opinion: dGc, GS procedure")
+            if save == 1
+                savefig("DeGroot_GS_10a_noperm.png")
+                savefig("DeGroot_GS_10a_noperm.eps")
+            end
+        elseif perm_flag == 1
+            title("Time plots of opinion: dGc, RGS procedure")
+            if save == 1
+                savefig("DeGroot_GS_10a_perm.png")
+                savefig("DeGroot_GS_10a_perm.eps")
+            end
+        end
+    elseif model == 2
+        if perm_flag == 0
+            title("Time plots of opinion: FJc, GS procedure")
+            if save == 1
+                savefig("FJ_GS_10a_noperm.png")
+                savefig("FJ_GS_10a_noperm.eps")
+            end
+        elseif perm_flag == 1
+            title("Time plots of opinion: FJc, RGS procedure")
+            if save == 1
+                savefig("FJ_GS_10a_perm.png")
+                savefig("FJ_GS_10a_perm.eps")
+            end
+        end
+    elseif model == 3
+        if perm_flag == 0
+            title("Time plots of opinion: HKc, GS procedure")
+            if save == 1
+                savefig("HK_GS_10a_noperm.png")
+                savefig("HK_GS_10a_noperm.eps")
+            end
+        elseif perm_flag == 1
+            title("Time plots of opinion: HKc, RGS procedure")
+            if save == 1
+                savefig("HK_GS_10a_perm.png")
+                savefig("HK_GS_10a_perm.eps")
+            end
+        end
+    end 
 end

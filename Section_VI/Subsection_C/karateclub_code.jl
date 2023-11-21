@@ -249,6 +249,8 @@ function COD_OSA_1p_update(x_os,targ,γ,A,b)
     #Define the optimization variables
     @variable(S, v) #v is the scalar value of the control for player p
     @variable(S, xn[1:N_a]) #xn is the new state of agent influenced by p
+    #Define limits for control
+    @constraint(S, u_min <= v <= u_max)
     #Define the dynamics as an equality constraint
     @constraint(S, xn .== A*x_os + b*v)
     #Define the objective function for agent p
